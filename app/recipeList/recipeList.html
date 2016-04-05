@@ -1,0 +1,31 @@
+<div class="col-xs-12">
+	<h1 class="big_title">{{data.title}} {{data.listName}} ({{data.size}})</h2>
+	<div ng-repeat="item in data.recipeList">
+
+		<div class="view col-xs-6 col-sm-3 recipe_minimal">
+
+
+			<a ng-href="/sucyApp/#/recipe/{{item.recipeId}}"> <img id="image"
+				onerror="this.src='/sucy/seiunochef/images/dish_thumb.jpg'"
+				src="{{item.recipe_img}}" alt="image">
+				<p class="title_text">{{item.title}}</p>
+	<!-- TODO Risolvere la questione del rating con le immagini -->
+			</a> <img id="star_min" ng-src="/sucy/seiunochef/images/rate/star{{item.rating}}.png"
+				alt="image">
+			<div class="user_min">
+				<a href="/sucyApp/#/wall/{{item.owner}}"><img
+					class="user_min_avatar_img" alt="immagine proprietario"
+					ng-src="{{item.owner_img}}">
+				<p>{{item.owner}}</p></a> 
+			</div>
+
+
+
+		</div>
+
+
+
+
+	</div>
+
+</div>
