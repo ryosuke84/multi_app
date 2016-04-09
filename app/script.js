@@ -18,18 +18,39 @@ app
 				 $stateProvider
 				 		 .state('root', {
 							 abstract: true,
-							 templateUrl: 'app/views/common.html',
+
+							 views: {
+								 '@': {
+									 templateUrl: 'app/views/common.html'
+								 	},
+								 'navbar@root': {
+									 templateUrl: 'app/templates/navbar.html',
+									 controller: 'NavbarController'
+								 	}
+							 }
 						 })
 
 						 .state('root.home', {
 							 url:'/home',
-							 templateUrl: 'app/templates/main_content.html',
-							 controller: 'HomeController'
+							 views:{
+										// 	'navbar@root': {
+										// 		templateUrl: 'app/templates/navbar.html',
+										// 	controller: 'NavbarController'
+										// 	},
+						 				'main-content': {
+						 					templateUrl: 'app/templates/main_content.html',
+											controller: 'HomeController'
+						 				}
+						 			}
 						 })
 
 						 .state('root.second', {
 							 url:'/second',
-							 templateUrl: 'app/templates/second_page.html',
+							 views: {
+								 'main-content': {
+									 templateUrl: 'app/templates/second_page.html',
+								 }
+							 },
 							 data: {
 								 authorizedRoles: [USER_ROLES.admin]
 							 }
@@ -37,8 +58,12 @@ app
 
 						 .state('root.login', {
 							 url:'/login',
-							 templateUrl: 'app/templates/login.html',
-							 controller: 'LoginController'
+							 views: {
+								 'main-content': {
+									 templateUrl: 'app/templates/login.html',
+									 controller: 'LoginController'
+								 }
+							 }
 						 })
 			}])
 				.constant('AUTH_EVENTS', {
