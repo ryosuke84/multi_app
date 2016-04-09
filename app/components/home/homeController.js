@@ -1,7 +1,11 @@
 
-app.controller('HomeController', ['$scope','$rootScope', 'SharedService', function($scope, $rootScope, SharedService){
-  $scope.changeMessage = function(message){
-    SharedService.setMessage(message)
-    $rootScope.$broadcast("new-message-available")
-  }
+app.controller('HomeController', ['$scope','$rootScope', 'Session', 'AUTH_EVENTS', function($scope, $rootScope, Session, AUTH_EVENTS){
+  $scope.$on('$viewContentLoaded', function(){
+    var session = Session.resumeSession()
+    if(session != null && session != undefined){
+      $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, session)
+    }
+  });
+
+
 }])

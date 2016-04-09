@@ -1,12 +1,18 @@
-app.controller('NavbarController', ['$scope', '$timeout', 'SharedService', function($scope, $timeout, SharedService){
-  var message = SharedService.getMessage()
-  $scope.message = message
+app.controller('NavbarController', ['$scope', '$rootScope', 'SharedService', 'AUTH_EVENTS', 'AuthService', function($scope,$rootScope, SharedService, AUTH_EVENTS, AuthService){
 
-  $scope.$on('new-message-available', function(event){
-    $scope.message = SharedService.getMessage()
-    // $timeout( function(){
-    //   console.log('received a new event')
-    //   $scope.message = SharedService.getMessage()
-    // })
-  })
+
+  // $scope.$on(AUTH_EVENTS.loginSuccess, function(event, session){
+  //   console.log('user authenticated: ' + session.userId)
+  //   $scope.userId = session.userId
+  // })
+
+  // $scope.$on(AUTH_EVENTS.logoutSuccess, function(){
+  //   $scope.userId = null
+  // })
+
+  $scope.logOut = function() {
+    AuthService.logout()
+    $rootScope.userSession =  null
+    $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess)
+  }
 }])

@@ -1,0 +1,30 @@
+
+
+CURRENT ACTIVITY: Provo ad implementare la logica di autorizzazione delle route.
+
+- Setto i ruoli come constants e li esplicito nella configurazione di routing ($state). OK
+- Aggiungo un nuovo metodo ad AuthService per consentire l'autorizzazione
+-Aggiungo logica la metodo run per gestire  l'enforcing sulle route dell'autorizzazione. OKKKKKKK
+
+THINGS TO DO:
+  - Considera l'eventualità di spostare la logica di salvataggio sessione nel
+    local storage all'interno del service Session
+  - utilizzare un http interceptor per inviare un header con il token nelle
+    richieste
+  - organizzare le view dell'applicazione in maniere gerarchica, provando a
+    sovrascrivere una view del nodo parent
+
+
+PAST ACTIVITIES:
+
+Sto implementando il salvataggio delle credenziali utente
+all'interno del local storage
+
+- analisi del funzionamento del local storage. Utilizzo il modulo ngStorage
+- Ora provo a salvare le informazioni della sesisone all'interno del local
+  storage. sALVATAGGIO RIUSCITO
+
+
+- PROBLEMA RESTORE DELLA SESSIONE.  Dove posiziono la logica del caricamento
+  della sesiosne utente? non posso farlo nel run perche nessuno ascolata ancora
+  i $broadcast. Proviamo a settare la sessione utente nel $rootScope. OK FUNZIONA!!!!!!
